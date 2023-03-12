@@ -1,6 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -8,13 +9,10 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes></Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
 }
 
 export default App;
-
-// main demo : https://ninetheme.com/themes/venam/v3/contact/
-// demo 1 : https://demo.xpeedstudio.com/marketov2/home5/product/branch-apple/
-// demo 2 : https://demo.xpeedstudio.com/marketov2/furniture/

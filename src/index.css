@@ -8,6 +8,19 @@
   font-family: "Jost", sans-serif;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 .navLink {
   @apply text-base pl-6 text-white hover:text-orange-clr duration-500  md:text-sm md:text-navlink-clr md:font-semibold lg:text-base lg:pl-8;
+}
+
+.overlay {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+/* foooter */
+.footer-icon {
+  @apply text-xl cursor-pointer;
 }

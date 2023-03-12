@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/img/logo2.png";
+import logo from "../assets/img/logo.png";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,14 +7,18 @@ import {
   faXmark,
   faCartArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
+import img from "../assets/img/product1.webp";
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
   function toggleNav() {
     setShowNav(!showNav);
   }
-
+  function toggleCart() {
+    setShowCart(!showCart);
+  }
   return (
     <section className="w-full relative ">
       <main className="w-[90%] mx-auto py-2 flex  items-center justify-between ">
@@ -44,19 +48,19 @@ const Navbar = () => {
               placeholder="Search for..."
             />
           </form>
-          <NavLink className="navLink" to={"/"}>
+          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
             HOME
           </NavLink>
-          <NavLink className="navLink" to={"/"}>
+          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
             CART
           </NavLink>
-          <NavLink className="navLink" to={"/"}>
+          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
             ABOUT US
           </NavLink>
-          <NavLink className="navLink" to={"/"}>
+          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
             SHOP
           </NavLink>
-          <NavLink className="navLink" to={"/"}>
+          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
             CONTACT
           </NavLink>
         </nav>
@@ -86,6 +90,7 @@ const Navbar = () => {
                   showNav ? "text-white " : ""
                 } duration-300`}
                 icon={faCartArrowDown}
+                onClick={toggleCart}
               />
               <p className="absolute -top-3 -right-2 bg-yellow-clr py-0 px-1 rounded-full text-center text-sm">
                 9
@@ -99,6 +104,75 @@ const Navbar = () => {
           </div>
         </article>
       </main>
+
+      <article
+        className={`min-h-screen w-[75%] pt-4 pb-8 px-4 bg-white absolute top-0  ${
+          showCart ? "right-[0%]" : "right-[-80%]"
+        } duration-500 md:w-[60%]  lg:w-[40%] z-20`}
+      >
+        <div className="flex justify-between items-center pb-5 border-b border-gray-100">
+          <h2 className="text-lg font-semibold">Shopping Cart</h2>
+          <FontAwesomeIcon
+            className="pr-5  text-2xl cursor-pointer   text-black "
+            icon={faXmark}
+            onClick={toggleCart}
+          />
+        </div>
+        <main>
+          <div className="flex  items-center justify-between mt-5 border-b border-gray-100 pb-5">
+            <img className="w-20 h-20" src={img} alt="product" />
+            <p className="text-base font-semibold">Product 1</p>
+            <small>
+              1 * <span className="text-green-500">$1000</span>
+            </small>
+            <FontAwesomeIcon
+              className="pr-5  text-2xl cursor-pointer   text-red-600 "
+              icon={faXmark}
+            />
+          </div>
+          <div className="flex  items-center justify-between mt-5 border-b border-gray-100 pb-5">
+            <img className="w-20 h-20" src={img} alt="product" />
+            <p className="text-base font-semibold">Product 1</p>
+            <small>
+              1 * <span className="text-green-500">$1000</span>
+            </small>
+            <FontAwesomeIcon
+              className="pr-5  text-2xl cursor-pointer   text-red-600 "
+              icon={faXmark}
+            />
+          </div>
+          <div className="flex  items-center justify-between mt-5 border-b border-gray-100 pb-5">
+            <img className="w-20 h-20" src={img} alt="product" />
+            <p className="text-base font-semibold">Product 1</p>
+            <small>
+              1 * <span className="text-green-500">$1000</span>
+            </small>
+            <FontAwesomeIcon
+              className="pr-5  text-2xl cursor-pointer   text-red-600 "
+              icon={faXmark}
+            />
+          </div>
+        </main>
+        <div className="mt-5">
+          <h2 className="text-right mr-5 font-semibold">
+            Subtotal : <span className="text-green-500 ">$26.00</span>
+          </h2>
+          <div className=" flex gap-5 items-center justify-center mt-7">
+            <button className="bg-yellow-clr text-white py-2 px-5 rounded-full duration-500 hover:bg-green-500">
+              View cart
+            </button>
+            <button className="bg-yellow-clr text-white py-2 px-5 rounded-full duration-500 hover:bg-green-500">
+              Checkout
+            </button>
+          </div>
+        </div>
+      </article>
+      {showCart && (
+        <div
+          className={`h-screen w-screen absolute top-0 right-0 z-10 overlay`}
+          onClick={toggleCart}
+        ></div>
+      )}
     </section>
   );
 };

@@ -18,3 +18,8 @@
 //
 // 1. item card design from demo 1
 // second section from main demo special offer 2020
+
+// +++++++++++
+// main demo : https://ninetheme.com/themes/venam/v3/
+// demo 1 : https://demo.xpeedstudio.com/marketov2/home5/
+// demo 2 : https://demo.xpeedstudio.com/marketov2/furniture/
