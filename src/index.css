@@ -20,6 +20,14 @@ html {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }
 
+.input-style {
+  @apply w-full py-2.5 pl-3 border rounded-md mb-7 outline-none duration-150 focus:drop-shadow-md;
+}
+
+.submit-btn {
+  @apply bg-white py-1.5 px-6 rounded-lg border border-orange-clr text-orange-clr font-semibold  hover:bg-orange-clr hover:text-white duration-300 lg:px-8 lg:py-2;
+}
+
 /* foooter */
 .footer-icon {
   @apply text-xl cursor-pointer;

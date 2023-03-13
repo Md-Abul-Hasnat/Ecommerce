@@ -51,17 +51,17 @@ const Navbar = () => {
           <NavLink className="navLink" to={"/"} onClick={toggleNav}>
             HOME
           </NavLink>
-          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
+          <NavLink className="navLink" to={"/cart"} onClick={toggleNav}>
             CART
           </NavLink>
-          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
+          <NavLink className="navLink" to={"/about"} onClick={toggleNav}>
             ABOUT US
           </NavLink>
-          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
+          <NavLink className="navLink" to={"/shop"} onClick={toggleNav}>
             SHOP
           </NavLink>
-          <NavLink className="navLink" to={"/"} onClick={toggleNav}>
-            CONTACT
+          <NavLink className="navLink" to={"/login"} onClick={toggleNav}>
+            LOGIN
           </NavLink>
         </nav>
 
@@ -70,17 +70,17 @@ const Navbar = () => {
             <NavLink className="navLink" to={"/"}>
               HOME
             </NavLink>
-            <NavLink className="navLink" to={"/"}>
+            <NavLink className="navLink" to={"/cart"}>
               CART
             </NavLink>
-            <NavLink className="navLink" to={"/"}>
+            <NavLink className="navLink" to={"/about"}>
               ABOUT US
             </NavLink>
-            <NavLink className="navLink" to={"/"}>
+            <NavLink className="navLink" to={"/shop"}>
               SHOP
             </NavLink>
-            <NavLink className="navLink" to={"/"}>
-              CONTACT
+            <NavLink className="navLink" to={"/login"}>
+              LOGIN
             </NavLink>
           </nav>
           <div className="space-x-5 flex mt-2 md:mt-0">

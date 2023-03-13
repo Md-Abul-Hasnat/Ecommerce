@@ -20,7 +20,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-screen mt-52 pt-5 pb-8 bg-footer-bg ">
+    <footer className="w-screen pt-5 pb-8 bg-footer-bg ">
       <main className="w-[90%] mx-auto grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16 lg:grid-cols-4 ">
         <article>
           <Link to={"/"}>
@@ -81,8 +81,8 @@ const Footer = () => {
           </div>
         </article>
       </main>
-      <div className="w-full text-center mt-10 bg-heading-clr py-4">
-        <small className="text-gray-300">
+      <div className="w-full text-center mt-16 -mb-8 bg-heading-clr py-4">
+        <small className="text-gray-300 ">
           Copyright © {year} - Ecommerce All Rights Reserved.
         </small>
       </div>
