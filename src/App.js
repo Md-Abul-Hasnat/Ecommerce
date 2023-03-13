@@ -9,11 +9,14 @@ import Shop from "./pages/Shop";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { Toaster } from "react-hot-toast";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Toaster />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -23,6 +26,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
         </Routes>
         <Footer />
       </BrowserRouter>

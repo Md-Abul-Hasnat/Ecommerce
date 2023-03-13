@@ -1,20 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../components/Banner";
 import img from "../assets/img/login.jpg";
 import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
   const bannerInfo = {
     title: "LOGIN",
     currentPage: "login",
   };
+
+  function updateUserInfo(e) {
+    setUserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, userInfo.email, userInfo.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        toast.success(" successfully logged in!");
+      })
+      .catch((error) => {
+        toast.error("Something went wrong!");
+      });
+  }
 
   return (
     <>
       <Banner bannerInfo={bannerInfo} />
       <section className="w-screen max-w-screen-lg h-fit my-16 mx-auto lg:my-20">
         <main className="w-[90%] h-full mx-auto   grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-5">
-          <div className="w-full ">
+          <div className="w-full  md:-mt-5 lg:-mt-7">
             <img className="w-[90%] mx-auto md:w-full" src={img} alt="image" />
             <p className="text-center">
               Don't have an account ?
@@ -24,7 +51,7 @@ const Login = () => {
             </p>
           </div>
 
-          <form className="px-10 lg:px-5">
+          <form className=" pt-4 px-10 lg:px-5 lg:pt-6" onSubmit={handleLogin}>
             <h1 className="text-4xl font-semibold text-center mb-7">
               Login Form
             </h1>
@@ -33,6 +60,9 @@ const Login = () => {
               className="input-style"
               type="email"
               placeholder="email"
+              name="email"
+              value={userInfo.email}
+              onChange={updateUserInfo}
               required
             />
             <br />
@@ -40,12 +70,23 @@ const Login = () => {
               className="input-style"
               type="password"
               placeholder="password"
+              name="password"
+              value={userInfo.password}
+              onChange={updateUserInfo}
               required
             />
             <br />
-            <button className="submit-btn" type="submit">
-              Login
-            </button>
+            <div className="flex justify-between">
+              <button className="submit-btn inline-block" type="submit">
+                Login
+              </button>
+              <Link
+                to={"/resetpassword"}
+                className="cursor-pointer text-right inline-block hover:text-orange-clr duration-300 "
+              >
+                Forgot password ?
+              </Link>
+            </div>
           </form>
         </main>
       </section>
