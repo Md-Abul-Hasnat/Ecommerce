@@ -29,9 +29,12 @@ html {
 }
 
 .btn {
-  @apply bg-orange-clr text-white py-2.5 px-5 rounded-md text-xs  hover:-translate-y-1.5 duration-500;
+  @apply bg-orange-clr text-white py-2.5 px-5 rounded-md text-xs  hover:-translate-y-1.5 duration-500 lg:px-7 lg:py-3 lg:text-sm;
 }
 
 .footer-icon {
   @apply text-xl cursor-pointer;
+}
+.swiper-pagination {
+  margin-bottom: 30px;
 }

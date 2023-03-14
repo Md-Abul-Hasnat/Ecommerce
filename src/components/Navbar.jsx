@@ -20,7 +20,7 @@ const Navbar = () => {
     setShowCart(!showCart);
   }
   return (
-    <section className="w-full relative ">
+    <section className="w-full relative z-10">
       <main className="w-[90%] mx-auto py-2 flex  items-center justify-between ">
         <Link to={"/"}>
           <img className="w-40 lg:w-52" src={logo} alt="logo" />
