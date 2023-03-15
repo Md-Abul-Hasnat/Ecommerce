@@ -36,6 +36,11 @@ const Register = () => {
         })
           .then(() => {
             toast.success("User created successfully!");
+            setUserInfo({
+              username: "",
+              email: "",
+              password: "",
+            });
           })
           .catch(() => {
             toast.error("Something went wrong while setting Username!");

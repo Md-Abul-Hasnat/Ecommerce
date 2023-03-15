@@ -30,9 +30,13 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         toast.success(" successfully logged in!");
+        setUserInfo({
+          email: "",
+          password: "",
+        });
       })
       .catch((error) => {
-        toast.error("Something went wrong!");
+        toast.error(error.message);
       });
   }
 

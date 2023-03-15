@@ -1,13 +1,14 @@
 import React from "react";
-import banner1 from "../assets/img/banner.png";
-import banner2 from "../assets/img/banner.webp";
-import banner3 from "../assets/img/banner3.png";
+import banner1 from "../assets/img/banner1.jpeg";
+import banner2 from "../assets/img/banner2.webp";
+import banner3 from "../assets/img/banner3.jpg";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { Link } from "react-router-dom";
 
 const HomeHero = () => {
   return (
@@ -24,22 +25,24 @@ const HomeHero = () => {
       }}
     >
       <SwiperSlide>
-        <main className=" w-[90%] h-full mx-auto flex flex-col items-center justify-center gap-5 sm:gap-0 lg:flex-row xl:w-[80%] ">
+        <main className=" w-[90%] h-full mx-auto flex flex-col items-center justify-center gap-0  lg:flex-row xl:w-[80%] ">
           <article className="text-center lg:basis-[80%] lg:text-left lg:mb-5 ">
             <h1 className="text-4xl font-black mb-3 text-heading-clr lg:text-6xl lg:font-semibold lg:mb-5">
               BEST DEAL
             </h1>
             <h2 className="text-xl font-semibold mb-2 text-heading-clr lg:text-3xl lg:font-normal lg:mb-3 xl:text-4xl xl:leading-[50px]">
-              MODERN COMFORTABLE SOFA
+              MODERN COMFORTABLE BED
             </h2>
             <p className="mb-5 text-orange-clr lg:text-lg">
               Get upto 50% off today Only!
             </p>
-            <button className="btn">SHOP NOW</button>
+            <Link to={"/shop"} className="btn">
+              SHOP NOW
+            </Link>
           </article>
           <article className="lg:basis-full ">
             <img
-              className="md:h-[300px] lg:h-auto"
+              className="sm:h-[300px] lg:h-auto"
               src={banner1}
               alt="Banner Image"
             />
@@ -47,22 +50,24 @@ const HomeHero = () => {
         </main>
       </SwiperSlide>
       <SwiperSlide>
-        <main className=" w-[90%] h-full mx-auto flex flex-col items-center justify-center gap-5 sm:gap-0 lg:flex-row xl:w-[80%] ">
+        <main className=" w-[90%] h-full mx-auto flex flex-col items-center justify-center gap-0  lg:flex-row xl:w-[80%] ">
           <article className="text-center lg:basis-[80%] lg:text-left lg:mb-5 ">
             <h1 className="text-4xl font-black mb-3 text-heading-clr lg:text-6xl lg:font-semibold lg:mb-5">
               BEST DEAL
             </h1>
             <h2 className="text-xl font-semibold mb-2 text-heading-clr lg:text-3xl lg:font-normal lg:mb-3 xl:text-4xl xl:leading-[50px]">
-              MODERN COMFORTABLE SOFA
+              COMFORTABLE TABLE
             </h2>
             <p className="mb-5 text-orange-clr lg:text-lg">
-              Get upto 50% off today Only!
+              Get upto 30% off today Only!
             </p>
-            <button className="btn">SHOP NOW</button>
+            <Link to={"/shop"} className="btn">
+              SHOP NOW
+            </Link>
           </article>
           <article className="lg:basis-full ">
             <img
-              className="md:h-[300px] lg:h-auto"
+              className="sm:h-[300px] lg:h-auto"
               src={banner2}
               alt="Banner Image"
             />
@@ -70,7 +75,7 @@ const HomeHero = () => {
         </main>
       </SwiperSlide>
       <SwiperSlide>
-        <main className=" w-[90%] h-full mx-auto flex flex-col items-center justify-center gap-5 sm:gap-0 lg:flex-row xl:w-[80%] ">
+        <main className=" w-[90%] h-full mx-auto flex flex-col items-center justify-center gap-0  lg:flex-row xl:w-[80%] ">
           <article className="text-center lg:basis-[80%] lg:text-left lg:mb-5 ">
             <h1 className="text-4xl font-black mb-3 text-heading-clr lg:text-6xl lg:font-semibold lg:mb-5">
               BEST DEAL
@@ -81,11 +86,13 @@ const HomeHero = () => {
             <p className="mb-5 text-orange-clr lg:text-lg">
               Get upto 50% off today Only!
             </p>
-            <button className="btn">SHOP NOW</button>
+            <Link to={"/shop"} className="btn">
+              SHOP NOW
+            </Link>
           </article>
           <article className="lg:basis-full ">
             <img
-              className="md:h-[300px] lg:h-auto"
+              className="sm:h-[300px] lg:h-auto"
               src={banner3}
               alt="Banner Image"
             />
