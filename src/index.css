@@ -29,7 +29,7 @@ html {
 }
 
 .btn {
-  @apply block w-fit bg-orange-clr text-white py-2.5 px-5 rounded-md text-xs  hover:-translate-y-1.5 duration-500 lg:px-7 lg:py-3 lg:text-sm;
+  @apply block w-fit mx-auto bg-orange-clr text-white py-2.5 px-5 rounded-md text-xs  hover:-translate-y-1.5 duration-500 lg:mx-0 lg:px-7 lg:py-3 lg:text-sm;
 }
 
 .footer-icon {

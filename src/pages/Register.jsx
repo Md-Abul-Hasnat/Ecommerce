@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import Banner from "../components/Banner";
 import img from "../assets/img/register.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addUser } from "../features/userSlice";
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [userInfo, setUserInfo] = useState({
     username: "",
     email: "",
@@ -36,6 +41,9 @@ const Register = () => {
         })
           .then(() => {
             toast.success("User created successfully!");
+            dispatch(addUser(user));
+            localStorage.setItem("user", JSON.stringify(user));
+            navigate("/");
             setUserInfo({
               username: "",
               email: "",

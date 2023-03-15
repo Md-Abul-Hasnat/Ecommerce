@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import Banner from "../components/Banner";
 import img from "../assets/img/login.jpg";
-import { Link } from "react-router-dom";
+import { json, Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addUser } from "../features/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -30,6 +35,9 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         toast.success(" successfully logged in!");
+        dispatch(addUser(user));
+        localStorage.setItem("user", JSON.stringify(user));
+        navigate("/");
         setUserInfo({
           email: "",
           password: "",

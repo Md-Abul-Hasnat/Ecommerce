@@ -1,6 +1,6 @@
 import React from "react";
 import banner1 from "../assets/img/banner1.jpeg";
-import banner2 from "../assets/img/banner2.webp";
+import banner2 from "../assets/img/a.jpeg";
 import banner3 from "../assets/img/banner3.jpg";
 import product1 from "../assets/img/lamp.webp";
 import product2 from "../assets/img/wood chair.webp";
@@ -60,31 +60,6 @@ const HomeHero = () => {
                 BEST DEAL
               </h1>
               <h2 className="text-xl font-semibold mb-2 text-heading-clr lg:text-3xl lg:font-normal lg:mb-3 xl:text-4xl xl:leading-[50px]">
-                COMFORTABLE TABLE
-              </h2>
-              <p className="mb-5 text-orange-clr lg:text-lg">
-                Get upto 30% off today Only!
-              </p>
-              <Link to={"/shop"} className="btn">
-                SHOP NOW
-              </Link>
-            </article>
-            <article className="lg:basis-full ">
-              <img
-                className="sm:h-[300px] lg:h-auto"
-                src={banner2}
-                alt="Banner Image"
-              />
-            </article>
-          </main>
-        </SwiperSlide>
-        <SwiperSlide>
-          <main className=" w-[90%] h-full mx-auto flex flex-col items-center justify-center gap-0  lg:flex-row xl:w-[80%] ">
-            <article className="text-center lg:basis-[80%] lg:text-left lg:mb-5 ">
-              <h1 className="text-4xl font-black mb-3 text-heading-clr lg:text-6xl lg:font-semibold lg:mb-5">
-                BEST DEAL
-              </h1>
-              <h2 className="text-xl font-semibold mb-2 text-heading-clr lg:text-3xl lg:font-normal lg:mb-3 xl:text-4xl xl:leading-[50px]">
                 MODERN COMFORTABLE SOFA
               </h2>
               <p className="mb-5 text-orange-clr lg:text-lg">
@@ -98,6 +73,31 @@ const HomeHero = () => {
               <img
                 className="sm:h-[300px] lg:h-auto"
                 src={banner3}
+                alt="Banner Image"
+              />
+            </article>
+          </main>
+        </SwiperSlide>
+        <SwiperSlide>
+          <main className=" w-[90%] h-full mx-auto flex flex-col items-center justify-center gap-0  lg:flex-row xl:w-[80%] ">
+            <article className="text-center lg:basis-[80%] lg:text-left lg:mb-5 ">
+              <h1 className="text-4xl font-black mb-3 text-heading-clr lg:text-6xl lg:font-semibold lg:mb-5">
+                BEST DEAL
+              </h1>
+              <h2 className="text-xl font-semibold mb-2 text-heading-clr lg:text-3xl lg:font-normal lg:mb-3 xl:text-4xl xl:leading-[50px]">
+                COMFORTABLE SOFA
+              </h2>
+              <p className="mb-5 text-orange-clr lg:text-lg">
+                Get upto 30% off today Only!
+              </p>
+              <Link to={"/shop"} className="btn">
+                SHOP NOW
+              </Link>
+            </article>
+            <article className="lg:basis-full ">
+              <img
+                className="sm:h-[300px] lg:h-auto"
+                src={banner2}
                 alt="Banner Image"
               />
             </article>
