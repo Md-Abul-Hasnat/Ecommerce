@@ -8,8 +8,14 @@ import {
   faCartArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 import img from "../assets/img/product1.webp";
+import { useSelector, useDispatch } from "react-redux";
+import { removeUser } from "../features/userSlice";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+
   const [showNav, setShowNav] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
@@ -19,6 +25,12 @@ const Navbar = () => {
   function toggleCart() {
     setShowCart(!showCart);
   }
+  function logout() {
+    dispatch(removeUser());
+    localStorage.setItem("user", JSON.stringify({}));
+    toast.success("Successfully logged out!");
+  }
+
   return (
     <section className="w-full relative z-10">
       <main className="w-[90%] mx-auto py-2 flex  items-center justify-between ">
@@ -60,9 +72,15 @@ const Navbar = () => {
           <NavLink className="navLink" to={"/shop"} onClick={toggleNav}>
             SHOP
           </NavLink>
-          <NavLink className="navLink" to={"/login"} onClick={toggleNav}>
-            LOGIN
-          </NavLink>
+          {user.uid ? (
+            <button className="navLink  w-fit" onClick={logout}>
+              LOG OUT
+            </button>
+          ) : (
+            <NavLink className="navLink" to={"/login"} onClick={toggleNav}>
+              LOGIN
+            </NavLink>
+          )}
         </nav>
 
         <article className="flex items-center gap-4 lg:gap-8">
@@ -79,9 +97,15 @@ const Navbar = () => {
             <NavLink className="navLink" to={"/shop"}>
               SHOP
             </NavLink>
-            <NavLink className="navLink" to={"/login"}>
-              LOGIN
-            </NavLink>
+            {user.uid ? (
+              <button className="navLink" onClick={logout}>
+                LOG OUT
+              </button>
+            ) : (
+              <NavLink className="navLink" to={"/login"}>
+                LOGIN
+              </NavLink>
+            )}
           </nav>
           <div className="space-x-5 flex mt-2 md:mt-0">
             <div className="relative ">

@@ -16,6 +16,18 @@ html {
   @apply text-base pl-6 text-white hover:text-orange-clr duration-500  md:text-sm md:text-navlink-clr md:font-semibold lg:text-base lg:pl-8;
 }
 
+.sub-heading {
+  @apply text-orange-clr text-sm text-center font-semibold mb-2;
+}
+
+.main-heading {
+  @apply text-center text-2xl font-semibold text-heading-clr;
+}
+
+.cetagory-btn {
+  @apply text-xs font-semibold cursor-pointer hover:text-orange-clr duration-300;
+}
+
 .overlay {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }

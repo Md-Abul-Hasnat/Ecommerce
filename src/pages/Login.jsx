@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Banner from "../components/Banner";
 import img from "../assets/img/login.jpg";
-import { json, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import toast from "react-hot-toast";
