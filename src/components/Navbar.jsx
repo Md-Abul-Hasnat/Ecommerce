@@ -39,7 +39,7 @@ const Navbar = () => {
         </Link>
 
         <nav
-          className={`w-[100%] h-screen absolute top-0   flex flex-col space-y-7 pl-3 pt-1 bg-heading-clr duration-500 ${
+          className={`w-[100%] h-screen fixed top-0   flex flex-col space-y-7 pl-3 pt-1 bg-heading-clr duration-500 ${
             showNav ? "right-[0%]" : "right-[100%]"
           } md:hidden `}
         >
@@ -84,7 +84,7 @@ const Navbar = () => {
         </nav>
 
         <article className="flex items-center gap-4 lg:gap-8">
-          <nav className="hidden md:block">
+          <nav className="hidden md:block ">
             <NavLink className="navLink" to={"/"}>
               HOME
             </NavLink>
@@ -130,7 +130,7 @@ const Navbar = () => {
       </main>
 
       <article
-        className={`min-h-screen w-[75%] pt-4 pb-8 px-4 bg-white absolute top-0  ${
+        className={`min-h-screen w-[75%] pt-4 pb-8 px-4 bg-white fixed top-0  ${
           showCart ? "right-[0%]" : "right-[-80%]"
         } duration-500 md:w-[60%]  lg:w-[40%] z-20`}
       >
@@ -193,7 +193,7 @@ const Navbar = () => {
       </article>
       {showCart && (
         <div
-          className={`h-screen w-screen absolute top-0 right-0 z-10 overlay`}
+          className={`h-screen w-screen fixed top-0 right-0 z-10 overlay`}
           onClick={toggleCart}
         ></div>
       )}

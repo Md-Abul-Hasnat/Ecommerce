@@ -8,16 +8,19 @@ const ProductCard = () => {
   return (
     <Link
       to={"/"}
-      className="w-full px-4 py-10 rounded-md  bg-footer-bg text-center cursor-pointer relative overflow-hidden group "
+      className="w-full  py-10 rounded-md  bg-footer-bg text-center cursor-pointer relative overflow-hidden group lg:hover:shadow-xl duration-500 "
     >
       <FontAwesomeIcon
-        className={`bg-yellow-clr text-white p-2.5 text-sm rounded-full absolute right-[100px] top-4 duration-300 md:-top-10 md:group-hover:top-4 hover:bg-orange-clr`}
+        className={`bg-yellow-clr text-white p-2.5 text-sm rounded-full absolute right-[70px] top-4 duration-300  md:-top-10 md:group-hover:top-4 hover:bg-orange-clr `}
         icon={faEye}
       />
       <FontAwesomeIcon
-        className={`bg-yellow-clr text-white text-sm p-2.5 rounded-full absolute right-[50px] top-4 duration-300 md:-top-10 md:group-hover:top-4 hover:bg-orange-clr `}
+        className={`bg-yellow-clr text-white text-sm p-2.5 rounded-full absolute right-[25px] top-4 duration-300 md:-top-10 md:group-hover:top-4 hover:bg-orange-clr `}
         icon={faCartArrowDown}
       />
+      <div className="bg-orange-clr text-white -rotate-45 absolute top-8 -left-12 py-2 w-[200px]">
+        10% off
+      </div>
       <div className="w-full ">
         <img className="h-[200px] mx-auto" src={p1} alt="Product image" />
       </div>
