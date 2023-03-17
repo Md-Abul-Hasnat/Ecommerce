@@ -21,11 +21,11 @@ html {
 }
 
 .main-heading {
-  @apply text-center text-2xl font-semibold text-heading-clr;
+  @apply text-center text-2xl font-medium text-heading-clr md:text-3xl md:mt-3 lg:text-4xl lg:mt-4;
 }
 
 .cetagory-btn {
-  @apply text-xs font-semibold cursor-pointer hover:text-orange-clr duration-300;
+  @apply w-fit mx-auto text-xs  font-semibold cursor-pointer hover:text-orange-clr duration-300 lg:text-sm lg:font-medium;
 }
 
 .overlay {

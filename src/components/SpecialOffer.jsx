@@ -1,38 +1,45 @@
 import React, { useState } from "react";
+import ProductCard from "./ProductCard";
 
 const SpecialOffer = () => {
-  const [cetagory, setCetagory] = useState("");
+  const cetagoryArr = [
+    "ALL",
+    "LIVING ROOM",
+    "BATH ROOM",
+    "BED ROOM",
+    "KITCHEN",
+    "ACCESSORIES",
+  ];
+  const [cetagory, setCetagory] = useState("ALL");
 
   function selectedCetagory(e) {
     setCetagory(e.target.innerText);
   }
-  console.log(cetagory);
 
   return (
-    <section className="w-screen mt-32">
+    <section className="w-screen mt-40 mb-32">
       <h3 className="sub-heading">SPECIAL OFFER</h3>
       <h1 className="main-heading">TOP COLLECTION 2023</h1>
-      <ul className="bg-gray-100 w-[80%] mx-auto mt-7 grid grid-cols-3 gap-3 text-center py-4 px-3 rounded-full text-gray-clr">
-        <li onClick={selectedCetagory} className="cetagory-btn">
-          ALL
-        </li>
-        <li className="cetagory-btn" onClick={selectedCetagory}>
-          LIVING ROOM
-        </li>
-        <li className="cetagory-btn" onClick={selectedCetagory}>
-          BATH ROOM
-        </li>
-        <li className="cetagory-btn" onClick={selectedCetagory}>
-          {" "}
-          BED ROOM
-        </li>
-        <li className="cetagory-btn" onClick={selectedCetagory}>
-          KITCHEN
-        </li>
-        <li className="cetagory-btn" onClick={selectedCetagory}>
-          ACCESSORIES
-        </li>
+      <ul className="bg-footer-bg w-[80%] mx-auto mt-7 grid grid-cols-3 gap-3 text-center py-4 px-3 rounded-full text-gray-clr sm:w-[70%] lg:grid-cols-6 ">
+        {cetagoryArr.map((arr, i) => {
+          return (
+            <li
+              key={i}
+              onClick={selectedCetagory}
+              className={`cetagory-btn ${
+                cetagory === arr && "text-orange-clr"
+              }`}
+            >
+              {arr}
+            </li>
+          );
+        })}
       </ul>
+      <main className="w-[85%] mx-auto mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+      </main>
     </section>
   );
 };
