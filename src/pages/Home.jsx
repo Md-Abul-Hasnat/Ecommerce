@@ -1,4 +1,5 @@
 import React from "react";
+import CetagoryBanner from "../components/CetagoryBanner";
 import HomeHero from "../components/HomeHero";
 import SpecialOffer from "../components/SpecialOffer";
 
@@ -7,6 +8,7 @@ const Home = () => {
     <>
       <HomeHero />
       <SpecialOffer />
+      <CetagoryBanner />
     </>
   );
 };
