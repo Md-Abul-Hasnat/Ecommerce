@@ -33,7 +33,7 @@ html {
 }
 
 .input-style {
-  @apply w-full py-2.5 pl-3 border rounded-md mb-7 outline-none duration-150 focus:drop-shadow-md;
+  @apply w-full py-2.5 pl-3 border rounded-md mb-7 outline-none duration-200 focus:drop-shadow-md;
 }
 
 .submit-btn {
