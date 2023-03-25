@@ -6,14 +6,12 @@ import {
   faBars,
   faXmark,
   faCartArrowDown,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import img from "../assets/img/product1.webp";
-import { useSelector, useDispatch } from "react-redux";
-import { removeUser } from "../features/userSlice";
-import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
   const [showNav, setShowNav] = useState(false);
@@ -24,11 +22,6 @@ const Navbar = () => {
   }
   function toggleCart() {
     setShowCart(!showCart);
-  }
-  function logout() {
-    dispatch(removeUser());
-    localStorage.setItem("user", JSON.stringify({}));
-    toast.success("Successfully logged out!");
   }
 
   return (
@@ -73,9 +66,13 @@ const Navbar = () => {
             SHOP
           </NavLink>
           {user.uid ? (
-            <button className="navLink  w-fit" onClick={logout}>
-              LOG OUT
-            </button>
+            <Link
+              to={"/account"}
+              className="navLink font-sans"
+              onClick={toggleNav}
+            >
+              ACCOUNT
+            </Link>
           ) : (
             <NavLink className="navLink" to={"/login"} onClick={toggleNav}>
               LOGIN
@@ -98,9 +95,9 @@ const Navbar = () => {
               SHOP
             </NavLink>
             {user.uid ? (
-              <button className="navLink" onClick={logout}>
-                LOG OUT
-              </button>
+              <Link to={"/account"} className="navLink">
+                <FontAwesomeIcon className="text-xl" icon={faUser} />
+              </Link>
             ) : (
               <NavLink className="navLink" to={"/login"}>
                 LOGIN
@@ -128,7 +125,7 @@ const Navbar = () => {
           </div>
         </article>
       </main>
-
+      {/* shopping cart */}
       <article
         className={`min-h-screen w-[75%] pt-4 pb-8 px-4 bg-white fixed top-0  ${
           showCart ? "right-[0%]" : "right-[-80%]"

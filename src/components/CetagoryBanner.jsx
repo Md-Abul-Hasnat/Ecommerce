@@ -8,8 +8,8 @@ import product4 from "../assets/img/product2.webp";
 
 const CetagoryBanner = () => {
   return (
-    <section className="w-screen  py-20 mt-20 bg-banner-bg ">
-      <main className="w-[85%] max-w-screen-2xl 2xl:max-h-screen mx-auto grid grid-cols-1 gap-y-12 md:w-[90%]  lg:grid-cols-[40%,60%] lg:gap-x-5">
+    <section className="w-screen  py-20 mt-24 bg-banner-bg ">
+      <main className="w-[85%] max-w-screen-2xl 2xl:max-h-screen mx-auto grid grid-cols-1 gap-y-12 md:w-[90%]  lg:grid-cols-[37%,63%] lg:gap-x-5 ">
         <article>
           <img
             className="w-full md:h-[650px] md:object-cover lg:h-auto "
@@ -17,7 +17,7 @@ const CetagoryBanner = () => {
             alt="banner image"
           />
         </article>
-        <article className="grid grid-cols-1 gap-y-7 md:grid-cols-2 md:gap-x-5">
+        <article className="grid grid-cols-1 gap-y-7 md:grid-cols-2 md:gap-x-5 lg:gap-y-5">
           <div className="grid grid-cols-1 bg-white p-5 shadow-sm duration-300 hover:shadow-lg lg:grid-cols-2 lg:gap-x-3 lg:p-3 lg:pb-0 lg:place-items-center">
             <img className="mx-auto" src={product1} alt="product image" />
             <div>
