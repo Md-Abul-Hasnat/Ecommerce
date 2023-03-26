@@ -66,12 +66,8 @@ const Navbar = () => {
             SHOP
           </NavLink>
           {user.uid ? (
-            <Link
-              to={"/account"}
-              className="navLink font-sans"
-              onClick={toggleNav}
-            >
-              ACCOUNT
+            <Link to={"/account"} className="navLink " onClick={toggleNav}>
+              PROFILE
             </Link>
           ) : (
             <NavLink className="navLink" to={"/login"} onClick={toggleNav}>

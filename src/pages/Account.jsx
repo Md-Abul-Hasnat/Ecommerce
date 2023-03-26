@@ -31,12 +31,14 @@ const Account = () => {
         <div className="w-[90%] max-w-screen-lg mx-auto sm:w-[70%]">
           <article className=" flex  justify-between items-center ">
             <div>
-              <h1 className="text-3xl font-semibold mb-3"> {displayName} </h1>
-              <h2 className="text-xl font-medium">{email} </h2>
+              <h1 className="text-orange-clr text-2xl font-semibold mb-2 sm:text-3xl ">
+                {displayName}
+              </h1>
+              <h2 className="text-sm font-medium sm:text-xl">{email} </h2>
             </div>
-            <div className="flex flex-col gap-y-4">
+            <div className="flex flex-col gap-y-4 ">
               <button
-                className=" bg-red-500 text-white py-2.5 px-5 rounded-md text-xs  hover:-translate-y-1.5 duration-500 lg:mx-0 lg:px-7 lg:py-3 lg:text-sm"
+                className=" bg-red-500 text-white py-2 px-3  rounded-md text-xs  hover:-translate-y-1.5 duration-500 sm:px-5 sm:py-2.5 lg:mx-0 lg:px-7 lg:py-3 lg:text-sm"
                 onClick={logout}
               >
                 Logout
@@ -44,7 +46,7 @@ const Account = () => {
               {uid === "vbvjlolqDERbZuamwGHGjp5SOfC2" && (
                 <Link
                   to={"/create"}
-                  className=" bg-green-500 text-white py-2.5 px-5 rounded-md text-xs  hover:-translate-y-1.5 duration-500 lg:mx-0 lg:px-7 lg:py-3 lg:text-sm"
+                  className=" bg-green-500 text-white py-2 px-3 rounded-md text-xs  hover:-translate-y-1.5 duration-500 sm:px-5 sm:py-2.5 lg:mx-0 lg:px-7 lg:py-3 lg:text-sm"
                 >
                   Add Product
                 </Link>
