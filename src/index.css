@@ -6,6 +6,7 @@
 
 * {
   font-family: "Jost", sans-serif;
+  scroll-behavior: smooth;
 }
 
 html {

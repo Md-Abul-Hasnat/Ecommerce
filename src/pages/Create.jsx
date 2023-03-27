@@ -4,16 +4,22 @@ import img from "../assets/img/placeholder.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-hot-toast";
-import { storage } from "../firebase/firebase.config";
+import { db, storage } from "../firebase/firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { addDoc, collection } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Create = () => {
+  const navigate = useNavigate();
+  const { uid } = useSelector((state) => state.user.user);
+
   const bannerInfo = {
     title: "ADD PRODUCT",
     currentPage: "Add Product",
   };
 
-  const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
   const [productDetails, setProductDetails] = useState({
     img: "",
     title: "",
@@ -25,14 +31,13 @@ const Create = () => {
     quantity: "",
     description: "",
   });
-  console.log(productDetails);
 
   const readImage = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      setImage(e.target.result);
+      setPreviewImage(e.target.result);
     };
 
     reader.readAsDataURL(file);
@@ -62,6 +67,43 @@ const Create = () => {
     });
   }
 
+  async function uploadProductToFirebase(e) {
+    e.preventDefault();
+
+    if (productDetails.description.length < 100) {
+      return toast.error("Product description is too short!!");
+    }
+    if (productDetails.quantity < 1) {
+      return toast.error("Please increase product quantity!!");
+    }
+    if (!previewImage) {
+      return toast.error("Please add product image!!");
+    }
+
+    try {
+      toast.success("Product upload on progress!!");
+      await addDoc(collection(db, "Products"), {
+        ...productDetails,
+      });
+
+      setProductDetails({
+        img: "",
+        title: "",
+        cetagory: "",
+        subCetagory: "",
+        description: "",
+        price: "",
+        discount: "",
+        finalPrice: "",
+        quantity: "",
+      });
+      setPreviewImage(null);
+      toast.success("Product added successfully!!");
+    } catch (e) {
+      toast.error("Could not add product!!");
+    }
+  }
+
   useEffect(() => {
     const discount = +productDetails.price * (+productDetails.discount / 100);
 
@@ -71,31 +113,42 @@ const Create = () => {
     });
   }, [productDetails.price, productDetails.discount]);
 
+  useEffect(() => {
+    if (uid !== "vbvjlolqDERbZuamwGHGjp5SOfC2") {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <>
       <Banner bannerInfo={bannerInfo} />
       <main className="w-screen py-12">
         <h1 className="text-center text-xl font-medium">Add New Product</h1>
-        <form className="w-[85%] max-w-screen-md mx-auto mt-5">
+        <form
+          className="w-[85%] max-w-screen-md mx-auto mt-5"
+          onSubmit={uploadProductToFirebase}
+        >
           <div className="relative w-full h-full bg-gray-200">
             <input
               type="file"
               className=" h-48 w-full z-10 relative opacity-0 cursor-pointer sm:h-64 md:h-72"
               name="img"
-              value={productDetails.img}
               onChange={uploadImage}
-              accept="image"
+              accept="image/*"
+              required
             />
             <img
-              className="absolute top-0 left-0 h-full w-full object-cover"
-              src={image || img}
+              className="absolute top-0 left-0 h-full w-full object-cover border"
+              src={previewImage || img}
               alt="product preview"
             />
 
-            <FontAwesomeIcon
-              className="z-0 text-3xl cursor-pointer absolute left-[47%] top-[40%] text-gray-500"
-              icon={faPlusCircle}
-            />
+            {!previewImage && (
+              <FontAwesomeIcon
+                className="z-0 text-3xl cursor-pointer absolute left-[47%] top-[40%] text-gray-500"
+                icon={faPlusCircle}
+              />
+            )}
           </div>
           <p className="text-xl font-medium mt-6 mb-4 text-orange-clr">
             Product Details :
@@ -122,9 +175,11 @@ const Create = () => {
               required
             >
               <option value="">select a cetagory</option>
-              <option value="Sports">Sports</option>
-              <option value="Sports">Sports</option>
-              <option value="Sports">Sports</option>
+              <option value="LIVING ROOM">Living Room </option>
+              <option value="BATH ROOM">Bath Room</option>
+              <option value="BED ROOM">Bed Room</option>
+              <option value="kITCHEN">kitchen</option>
+              <option value="OTHER">Others</option>
             </select>
           </div>
           <div className="-mt-1">
@@ -137,9 +192,15 @@ const Create = () => {
               required
             >
               <option value="">select a Sub Cetagory</option>
-              <option value="Sports">Sports</option>
-              <option value="Sports">Sports</option>
-              <option value="Sports">Sports</option>
+              <option value="BED">Bed</option>
+              <option value="TABLE">Table</option>
+              <option value="CHAIR">Chair</option>
+              <option value="SOFA">Sofa</option>
+              <option value="LIGHT">Light</option>
+              <option value="FAN">Fan</option>
+              <option value="TELEVISION">Television</option>
+              <option value="FRIDGE">Fridge</option>
+              <option value="OTHER">Other</option>
             </select>
           </div>
           <div>
@@ -159,11 +220,10 @@ const Create = () => {
             <input
               className="input-style !mb-4"
               type="number"
-              placeholder="10%"
+              placeholder="10% (optional)"
               value={productDetails.discount}
               onChange={updateProductDetails}
               name="discount"
-              required
             />
           </div>
           <div>

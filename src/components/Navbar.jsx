@@ -16,6 +16,7 @@ const Navbar = () => {
 
   const [showNav, setShowNav] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [stickyNav, setStickyNav] = useState(false);
 
   function toggleNav() {
     setShowNav(!showNav);
@@ -24,9 +25,27 @@ const Navbar = () => {
     setShowCart(!showCart);
   }
 
+  window.addEventListener("scroll", (e) => {
+    if (window.scrollY > 0) {
+      setStickyNav(true);
+    } else {
+      setStickyNav(false);
+    }
+  });
+
   return (
-    <section className="w-full relative z-10">
-      <main className="w-[90%] mx-auto py-2 flex  items-center justify-between ">
+    <section
+      className={`w-full z-10  ${
+        stickyNav
+          ? "fixed top-0 bg-footer-bg shadow-lg"
+          : "absolute top-0 left-0"
+      } duration-500`}
+    >
+      <main
+        className={`w-[90%] mx-auto flex  items-center justify-between ${
+          stickyNav ? "py-1" : "py-2 "
+        }`}
+      >
         <Link to={"/"}>
           <img className="w-40 lg:w-52" src={logo} alt="logo" />
         </Link>

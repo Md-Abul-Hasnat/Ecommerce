@@ -25,7 +25,7 @@ const HomeHero = () => {
         speed={1800}
         loop={true}
         modules={[Pagination, Autoplay]}
-        className="w-screen h-[90vh] "
+        className="w-screen h-[100vh] "
         style={{
           "--swiper-pagination-color": "#ff6000",
           "--swiper-pagination-bullet-size": "9px",
