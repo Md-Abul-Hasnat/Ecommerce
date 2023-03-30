@@ -15,8 +15,17 @@ import ResetPassword from "./pages/ResetPassword";
 import Create from "./pages/Create";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ScrollToTop from "./components/ScroolToTop";
+import { useDispatch } from "react-redux";
+import { getProducts } from "./features/productSlice";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
   return (
     <>
       <BrowserRouter>

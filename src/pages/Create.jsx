@@ -9,8 +9,10 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 const Create = () => {
+  const id = uuidv4();
   const navigate = useNavigate();
   const { uid } = useSelector((state) => state.user.user);
 
@@ -21,6 +23,7 @@ const Create = () => {
 
   const [previewImage, setPreviewImage] = useState(null);
   const [productDetails, setProductDetails] = useState({
+    id,
     img: "",
     title: "",
     cetagory: "",
