@@ -178,10 +178,10 @@ const Create = () => {
               required
             >
               <option value="">select a cetagory</option>
-              <option value="LIVING ROOM">Living Room </option>
-              <option value="BATH ROOM">Bath Room</option>
+              <option value="DRAWING ROOM">Drawing Room </option>
               <option value="BED ROOM">Bed Room</option>
-              <option value="kITCHEN">kitchen</option>
+              <option value="BATH ROOM">Bath Room</option>
+              <option value="KITCHEN">kitchen</option>
               <option value="OTHER">Others</option>
             </select>
           </div>
