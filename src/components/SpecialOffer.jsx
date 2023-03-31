@@ -49,7 +49,7 @@ const SpecialOffer = () => {
         <main className="w-[85%] mx-auto mt-14 grid grid-cols-1 gap-5  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:w-[90%] duration-300">
           {filteredItem.length !== 0 ? (
             filteredItem.map((product) => {
-              return <ProductCard key={product.id} data={product} />;
+              return <ProductCard key={+product.id} data={product} />;
             })
           ) : (
             <h2 className="w-[100vw] text-center text-base md:text-lg">

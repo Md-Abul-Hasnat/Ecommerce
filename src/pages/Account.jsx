@@ -5,11 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Banner from "../components/Banner";
 import { removeUser } from "../features/userSlice";
 import img from "../assets/img/lamp.webp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 const Account = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { displayName, email, uid } = useSelector((state) => state.user.user);
+  const { products } = useSelector((state) => state.products);
 
   const bannerInfo = {
     title: "PROFILE",
@@ -54,18 +57,56 @@ const Account = () => {
             </div>
           </article>
 
-          <article className="mt-10 border-t pt-5">
-            <h1 className="text-lg font-medium">My orders : </h1>
-            <div className="mt-10">
-              <article className="flex  items-center gap-5">
-                <img className="w-40" src={img} alt="product image" />
-                <div>
-                  <h1>Product name</h1>
-                  <h2>$10.0</h2>
-                </div>
-              </article>
-            </div>
-          </article>
+          {uid === "vbvjlolqDERbZuamwGHGjp5SOfC2" ? (
+            <article className="mt-10 border-t pt-5 ">
+              <h1 className="text-lg font-medium sm:text-2xl">Products : </h1>
+              <div className="mt-6 flex flex-col gap-y-5">
+                {products.map((product) => {
+                  const { finalPrice, img, title, id } = product;
+                  return (
+                    <article
+                      key={+id}
+                      className="flex  items-center  shadow-md py-5"
+                    >
+                      <img
+                        className="w-[40%] h-24  object-cover lg:w-[30%]"
+                        src={img}
+                        alt="product image"
+                      />
+                      <div className="ml-6 flex flex-col gap-y-2 sm:gap-y-5  lg:ml-6">
+                        <h1 className="sm:text-xl sm:font-medium">{title} </h1>
+                        <h2 className="sm:text-xl ">${finalPrice}</h2>
+                        <div className="flex mt-2 gap-x-4 lg:gap-x-6">
+                          <FontAwesomeIcon
+                            className={`text-sm sm:text-base cursor-pointer text-heading-clr `}
+                            icon={faEdit}
+                          />
+                          <FontAwesomeIcon
+                            className={`text-sm sm:text-base cursor-pointer text-red-500 
+                          `}
+                            icon={faTrash}
+                          />
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </article>
+          ) : (
+            <article className="mt-10 border-t pt-5">
+              <h1 className="text-lg font-medium">My orders : </h1>
+              <div className="mt-10">
+                <article className="flex  items-center gap-5">
+                  <img className="w-40" src={img} alt="product image" />
+                  <div>
+                    <h1>Product name</h1>
+                    <h2>$10.0</h2>
+                  </div>
+                </article>
+              </div>
+            </article>
+          )}
         </div>
       </main>
     </>
