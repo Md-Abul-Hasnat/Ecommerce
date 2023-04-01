@@ -7,6 +7,8 @@ import { removeUser } from "../features/userSlice";
 import img from "../assets/img/lamp.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase.config";
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,12 @@ const Account = () => {
     localStorage.setItem("user", JSON.stringify({}));
     toast.success("Successfully logged out!");
     navigate("/");
+  }
+
+  async function deleteProduct(id) {
+    console.log(id);
+    await deleteDoc(doc(db, "Products", id));
+    toast.success("Product deleted");
   }
 
   return (
@@ -65,7 +73,7 @@ const Account = () => {
                   const { finalPrice, img, title, id } = product;
                   return (
                     <article
-                      key={+id}
+                      key={id}
                       className="flex  items-center  shadow-md py-5"
                     >
                       <img
@@ -85,6 +93,7 @@ const Account = () => {
                             className={`text-sm sm:text-base cursor-pointer text-red-500 
                           `}
                             icon={faTrash}
+                            onClick={() => deleteProduct(id)}
                           />
                         </div>
                       </div>

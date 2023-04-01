@@ -23,7 +23,7 @@ const Create = () => {
 
   const [previewImage, setPreviewImage] = useState(null);
   const [productDetails, setProductDetails] = useState({
-    id,
+    id: null,
     img: "",
     title: "",
     cetagory: "",
@@ -34,6 +34,8 @@ const Create = () => {
     quantity: "",
     description: "",
   });
+
+  console.log(productDetails);
 
   const readImage = (e) => {
     const file = e.target.files[0];
@@ -82,14 +84,19 @@ const Create = () => {
     if (!previewImage) {
       return toast.error("Please add product image!!");
     }
+    if (productDetails.finalPrice < 1) {
+      return toast.error("Please increase product price!!");
+    }
 
     try {
       toast.success("Product upload on progress!!");
       await addDoc(collection(db, "Products"), {
         ...productDetails,
+        id,
       });
 
       setProductDetails({
+        id: null,
         img: "",
         title: "",
         cetagory: "",
@@ -112,7 +119,7 @@ const Create = () => {
 
     setProductDetails({
       ...productDetails,
-      finalPrice: productDetails.price - discount,
+      finalPrice: (productDetails.price - discount).toFixed(1),
     });
   }, [productDetails.price, productDetails.discount]);
 
@@ -128,7 +135,7 @@ const Create = () => {
       <main className="w-screen py-12">
         <h1 className="text-center text-xl font-medium">Add New Product</h1>
         <form
-          className="w-[85%] max-w-screen-md mx-auto mt-5"
+          className="w-[85%] max-w-screen-md mx-auto mt-5 pb-5"
           onSubmit={uploadProductToFirebase}
         >
           <div className="relative w-full h-full bg-gray-200">
