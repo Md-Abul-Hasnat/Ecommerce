@@ -8,11 +8,13 @@ import { db, storage } from "../firebase/firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { getProducts } from "../features/productSlice";
 
 const Create = () => {
   const id = uuidv4();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { uid } = useSelector((state) => state.user.user);
 
@@ -34,8 +36,6 @@ const Create = () => {
     quantity: "",
     description: "",
   });
-
-  console.log(productDetails);
 
   const readImage = (e) => {
     const file = e.target.files[0];
@@ -94,6 +94,8 @@ const Create = () => {
         ...productDetails,
         id,
       });
+
+      dispatch(getProducts());
 
       setProductDetails({
         id: null,

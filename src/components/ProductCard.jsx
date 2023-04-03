@@ -31,7 +31,7 @@ const ProductCard = ({ data }) => {
           alt="Product image"
         />
       </div>
-      <div className="mt-2">
+      <div className="mt-5">
         <h1 className="text-2xl font-normal text-heading-clr mb-1">{title}</h1>
         <p className="text-orange-clr text-lg">${finalPrice}</p>
       </div>

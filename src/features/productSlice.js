@@ -35,7 +35,9 @@ export const getProducts = createAsyncThunk(
       onSnapshot(
         collection(db, "Products"),
         (snapshot) => {
-          const data = snapshot.docs.map((doc) => doc.data());
+          const data = snapshot.docs.map((doc) => {
+            return { docID: doc.id, ...doc.data() };
+          });
           resolve(data);
         },
         (error) => {

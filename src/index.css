@@ -32,6 +32,12 @@ html {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }
 
+.centerItem {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .input-style {
   @apply w-full py-2.5 pl-3 border rounded-md mb-7 outline-none duration-200 focus:drop-shadow-md;
 }
