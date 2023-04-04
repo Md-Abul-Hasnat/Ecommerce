@@ -13,6 +13,7 @@ import Account from "./pages/Account";
 import { Toaster } from "react-hot-toast";
 import ResetPassword from "./pages/ResetPassword";
 import Create from "./pages/Create";
+import Edit from "./pages/Edit";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ScrollToTop from "./components/ScroolToTop";
 import { useDispatch } from "react-redux";
@@ -54,6 +55,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Create />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <Edit />
                 </ProtectedRoute>
               }
             />

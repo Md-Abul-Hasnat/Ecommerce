@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Banner from "../components/Banner";
 import { removeUser } from "../features/userSlice";
 import img from "../assets/img/lamp.webp";
@@ -10,6 +10,7 @@ import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase.config";
 import { getProducts } from "../features/productSlice";
+import { addProduct } from "../features/ProductEditSlice";
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,11 @@ const Account = () => {
     await deleteDoc(doc(db, "Products", docID));
     toast.success("Product deleted");
     dispatch(getProducts());
+  }
+
+  function handleEditProduct(product) {
+    dispatch(addProduct(product));
+    navigate(`/edit/${product.docID}`);
   }
 
   return (
@@ -116,7 +122,7 @@ const Account = () => {
                     return (
                       <article
                         key={id}
-                        className="flex  items-center  shadow-md py-5"
+                        className="flex  items-center border-b pb-7 pt-5"
                       >
                         <img
                           className="w-[40%] h-24  object-cover lg:w-[30%]"
@@ -130,8 +136,9 @@ const Account = () => {
                           <h2 className="sm:text-xl ">${finalPrice}</h2>
                           <div className="flex mt-2 gap-x-4 lg:gap-x-6">
                             <FontAwesomeIcon
-                              className={`text-sm sm:text-base cursor-pointer text-heading-clr `}
+                              className={`text-sm sm:text-base cursor-pointer text-heading-clr hover:text-orange-clr duration-300`}
                               icon={faEdit}
+                              onClick={() => handleEditProduct(product)}
                             />
                             <FontAwesomeIcon
                               className={`text-sm sm:text-base cursor-pointer text-red-500 
