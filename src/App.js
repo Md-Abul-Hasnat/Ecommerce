@@ -19,6 +19,7 @@ import ScrollToTop from "./components/ScroolToTop";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./features/productSlice";
 import { useEffect } from "react";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
             <Route
               path="/account"
               element={

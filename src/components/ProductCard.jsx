@@ -4,11 +4,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
-  const { discount, finalPrice, img, title } = data;
+  const { discount, finalPrice, img, title, docID } = data;
 
   return (
     <Link
-      to={"/"}
+      to={`/product/${docID}`}
       className="w-full  pt-10 pb-6 rounded-md  bg-footer-bg text-center cursor-pointer relative overflow-hidden group lg:hover:shadow-xl duration-500 "
     >
       <FontAwesomeIcon
