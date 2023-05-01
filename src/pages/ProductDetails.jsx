@@ -3,6 +3,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
 import { db } from "../firebase/firebase.config";
 import Banner from "../components/Banner";
+import { useSelector } from "react-redux";
+import ProductCard from "../components/ProductCard";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
 
 const ProductDetails = () => {
   const bannerInfo = {
@@ -11,11 +19,12 @@ const ProductDetails = () => {
   };
 
   const location = useLocation();
+  const { products } = useSelector((state) => state.products);
   const [productData, setProductData] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     const productID = location.pathname.split("/")[2];
 
     async function getProductData() {
@@ -23,11 +32,11 @@ const ProductDetails = () => {
       const docSnap = await getDoc(docRef);
 
       setProductData(docSnap.data());
-      setLoading(false);
+      setIsLoading(false);
     }
 
     getProductData();
-  }, []);
+  }, [location.pathname]);
 
   const {
     img,
@@ -36,9 +45,14 @@ const ProductDetails = () => {
     description,
     finalPrice,
     quantity,
-    subCetagory,
+    discount,
     title,
+    id,
   } = productData;
+
+  const suggestedProduct = products.filter(
+    (product) => product.cetagory === cetagory && product.id != id
+  );
 
   return (
     <>
@@ -53,13 +67,20 @@ const ProductDetails = () => {
             />
           </article>
           <article>
-            <p className="bg-gray-200 w-fit px-4 py-1  text-xs mb-4 font-medium">
-              {quantity} In Stock
-            </p>
-            <h1 className="text-2xl font-medium mb-3 "> {title} </h1>
+            <div className="flex gap-3">
+              <p className="bg-gray-200 w-fit px-4 py-1  text-xs mb-4 font-medium">
+                {quantity} In Stock
+              </p>
+              {discount > 0 && (
+                <p className="bg-gray-200 w-fit px-4 py-1  text-xs mb-4 font-medium">
+                  {discount}% off
+                </p>
+              )}
+            </div>
+            <h1 className="text-2xl font-medium mb-3 lg:text-3xl"> {title} </h1>
             <p className="mb-3.5 text-[13px] tracking-wide font-semibold">
               CETAGORY :
-              <span className="font-medium text-[15px]  text-gray-clr">
+              <span className="font-medium text-[15px] ml-1 text-gray-clr">
                 {cetagory}
               </span>
             </p>
@@ -89,6 +110,54 @@ const ProductDetails = () => {
               </article>
             </div>
           </article>
+        </div>
+
+        {/* swiper section */}
+        <div className="mt-24 w-[90%] mx-auto max-w-screen-xl  sm:w-[80%] lg:w-[90%] ">
+          <h1 className=" border-b pb-3  text-xl font-medium ">
+            You May Also Like
+          </h1>
+
+          <Swiper
+            pagination={{
+              dynamicBullets: true,
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              450: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+
+              950: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1100: {
+                slidesPerView: 4,
+                spaceBetween: 15,
+              },
+            }}
+            modules={[Pagination]}
+            className="w-full "
+            style={{
+              "--swiper-pagination-color": "#ff6000",
+              "--swiper-pagination-bullet-size": "9px",
+              "--swiper-pagination-bullet-horizontal-gap": "6px",
+            }}
+          >
+            {suggestedProduct.map((product) => (
+              <SwiperSlide
+                key={product.id}
+                className="overflow-hidden mt-10 bg-footer-bg  mb-16 "
+              >
+                <ProductCard data={product} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </main>
     </>
